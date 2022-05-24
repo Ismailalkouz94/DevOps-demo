@@ -27,7 +27,6 @@ pipeline {
         stage('Build Docker Image'){
             steps
             {
-                sh "docker build -t ${CONTAINER_REPOSITORY}:latest ."
             }
         }
 
@@ -40,7 +39,8 @@ pipeline {
                 {
                      docker.withRegistry('https://714089092330.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:d1d91614-b200-4a33-9ff9-94d11960ba2b')
                      {
-                        docker.image('714089092330.dkr.ecr.us-east-1.amazonaws.com/devops-demo').push('latest')
+                        def myImage=docker.build('devops-demo')
+                        myImage.push('latest')
                      }
                 }
             }
