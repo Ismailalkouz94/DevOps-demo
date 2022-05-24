@@ -24,12 +24,6 @@ pipeline {
                 sh "mvn install"
             }
         }
-        stage('Build Docker Image'){
-            steps
-            {
-            }
-        }
-
 
     stage('Push Image to AWS ECR'){
             steps
