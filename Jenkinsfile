@@ -30,6 +30,7 @@ pipeline {
             {
                 script
                 {
+                //must install jenkins plugins : aws credentials , ecr , docker pipeline
                      docker.withRegistry('https://714089092330.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:d1d91614-b200-4a33-9ff9-94d11960ba2b')
                      {
                         def myImage = docker.build('devops-demo')
