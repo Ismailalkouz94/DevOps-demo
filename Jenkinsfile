@@ -28,7 +28,6 @@ pipeline {
     stage('Push Image to AWS ECR'){
             steps
             {
-                sh "docker tag ${CONTAINER_REPOSITORY}:latest  ${CONTAINER_REPOSITORY}:latest"
                 script
                 {
                      docker.withRegistry('https://714089092330.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:d1d91614-b200-4a33-9ff9-94d11960ba2b')
