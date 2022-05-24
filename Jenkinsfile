@@ -26,6 +26,8 @@ pipeline {
         }
 
 
+
+
     stage('Push Image to AWS ECR'){
             steps
             {
