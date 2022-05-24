@@ -25,21 +25,21 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image')
+    stage('Build Docker Image')
+    		{
+    			steps
+    			{
+    				sh "docker build . -t ${CONTAINER_REPOSITORY}:latest"
+    				sh "docker tag ${CONTAINER_REPOSITORY}:latest  ${CONTAINER_REPOSITORY}:latest"
+    			}
+    		}
+        stage('Push Image to AWS ECR')
+        {
+            steps
             {
-                steps
-                {
-                    sh "sudo docker build . -t ${CONTAINER_REPOSITORY}:latest"
-                    sh "sudo docker tag ${CONTAINER_REPOSITORY}:latest  ${CONTAINER_REPOSITORY}:latest"
-                }
+                sh "docker push ${REMOTLY}:latest"
             }
-		stage('Push Image to AWS ECR')
-            {
-                steps
-                {
-                    sh "sudo docker push ${CONTAINER_REPOSITORY}:latest"
-                }
-            }
+        }
 
     }
 
