@@ -3,17 +3,14 @@ pipeline {
     tools {
         jdk 'jdk'
         maven '3.8.5'
-
     }
-
-    environment
-    	{
+    environment {
     	    AWS_ACCOUNT_ID="714089092330"
             AWS_DEFAULT_REGION="us-east-1"
             IMAGE_REPO_NAME="devops-demo"
             IMAGE_TAG="v1"
             REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
-    	}
+    }
 
     stages {
         stage("build project") {
@@ -39,15 +36,14 @@ pipeline {
         }
 
         stage('Build Docker Image'){
-                steps
+            steps
+            {
+                script
                 {
-                    script
-                    {
-                    //must install jenkins plugins : aws credentials , ecr , docker pipeline
-                    sh "docker build -t ${IMAGE_REPO_NAME}:${IMAGE_TAG} ."
-                    }
+                //must install jenkins plugins : aws credentials , ecr , docker pipeline
+                sh "docker build -t ${IMAGE_REPO_NAME}:${IMAGE_TAG} ."
                 }
-
+            }
        }
 
         stage('Pushing to AWS ECR') {
@@ -59,7 +55,6 @@ pipeline {
              }
         }
     }
-
 
 
     post
