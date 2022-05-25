@@ -36,13 +36,13 @@ pipeline {
             }
         }
 
-        stage('Build & Push Image to AWS ECR'){
+        stage('Build Image'){
                 steps
                 {
                     script
                     {
                     //must install jenkins plugins : aws credentials , ecr , docker pipeline
-                    dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+                    sh "docker build -t ${IMAGE_REPO_NAME}:${IMAGE_TAG} ."
                     }
                 }
 
