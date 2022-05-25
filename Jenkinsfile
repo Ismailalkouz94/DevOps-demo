@@ -63,7 +63,7 @@ pipeline {
     {
         always
         {
-            sh "rm -rf /var/jenkins_home/workspace/${PROJECT}/*"
+            sh "rm -rf /var/jenkins_home/workspace/${IMAGE_REPO_NAME}/*"
         }
     }
 
