@@ -12,7 +12,7 @@ pipeline {
             AWS_DEFAULT_REGION="us-east-1"
             IMAGE_REPO_NAME="devops-demo"
             IMAGE_TAG="v1"
-            REPOSITORY_URI = "714089092330.dkr.ecr.us-east-1.amazonaws.com/${IMAGE_REPO_NAME}"
+            REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
     	}
 
     stages {
@@ -31,7 +31,7 @@ pipeline {
         stage('Logging into AWS ECR') {
             steps {
                 script {
-                    sh """aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"""
+                    sh "aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
                 }
             }
         }
