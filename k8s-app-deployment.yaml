@@ -14,9 +14,9 @@ spec:
     spec:
       containers:
         - name: devops-demo
-          image: devops-demo:latest
+          image: 714089092330.dkr.ecr.us-east-1.amazonaws.com/devops-demo:latest
           # Image that will be used to containers in the cluster
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 8081
 # The port that the container is running on in the cluster

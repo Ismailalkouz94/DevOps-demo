@@ -25,7 +25,7 @@ pipeline {
             }
         }
 
-    stage('Push Image to AWS ECR'){
+    stage('Build & Push Image to AWS ECR'){
             steps
             {
                 script
@@ -40,6 +40,13 @@ pipeline {
             }
 
         }
+    stage('Deploy to Kubernetes Cluster...')
+            {
+                steps
+                {
+                    sh "kubectl apply -f k8s-app-deployment.yaml"
+                }
+            }
 
     }
 
