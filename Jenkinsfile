@@ -8,7 +8,7 @@ pipeline {
 
     environment
     	{
-    	    AWS_ACCOUNT_ID="aws-credentials"
+    	    AWS_ACCOUNT_ID="awsCredentials"
             AWS_DEFAULT_REGION="us-east-1"
             IMAGE_REPO_NAME="devops-demo"
             IMAGE_TAG="v1"
